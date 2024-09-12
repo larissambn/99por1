@@ -57,7 +57,7 @@ const Tutor = sequelize.define('Tutor', {
 
   elderlyPhone: {
     type: DataTypes.NUMBER,
-    allowNull: false,
+    allowNull: true,
     validate: {
     //  isEmail: true, // Validate phone number format
     },

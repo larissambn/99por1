@@ -24,30 +24,6 @@ const User = sequelize.define('User', {
     allowNull: false,
   },
 
-  tutorName: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-
-//How would this behave for elderly with no tutor ? (allowNull: false)
-
-  tutorEmail: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true, // Ensure email is unique
-    validate: {
-      isEmail: true, // Validate email format
-    },
-  },
-
-  tutorPhone: {
-    type: DataTypes.NUMBER,
-    allowNull: true,
-    validate: {
-    //  isEmail: true, // Validate phone number format
-    },
-  },
-
   email: {
     type: DataTypes.STRING,
     allowNull: false,
