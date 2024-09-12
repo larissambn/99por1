@@ -10,7 +10,7 @@ const User = sequelize.define('User', {
   },
 
   user_type: {
-    type: DataTypes.ENUM('idoso', 'usuario', 'representante'),
+    type: DataTypes.ENUM('idoso', 'usuario'),
     allowNull: false,
   },
 
@@ -29,9 +29,11 @@ const User = sequelize.define('User', {
     allowNull: true,
   },
 
+//How would this behave for elderly with no tutor ? (allowNull: false)
+
   tutorEmail: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
     unique: true, // Ensure email is unique
     validate: {
       isEmail: true, // Validate email format
