@@ -1,22 +1,27 @@
-import express from "express";
+import express from 'express';
+import {
+  register,
+  login,
+  findUserByEmail,
+  updateUser,
+  deleteUser,
+} from '../controllers/usuarioController';
 
-const userRoutes = express.Router();
+const userRouter = express.Router();
 
-userRoutes.post(
+// POST /register - Register a new user
+userRouter.post('/register', register);
 
-);
+// POST /login - Login user
+userRouter.post('/login', login);
 
+// GET /users/:id - Get user by ID
+userRouter.get('/users/:email', findUserByEmail);
 
-userRoutes.get(
+// PUT /users/:id - Update user by ID
+userRouter.put('/users/:id', updateUser);
 
-);
+// DELETE /users/:id - Delete user by ID
+userRouter.delete('/users/:id', deleteUser);
 
-userRoutes.patch(
-
-);
-
-userRoutes.delete(
-
-);
-
-export default { userRoutes };
+export default userRouter;
