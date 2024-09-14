@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import Tutor from '../models/representante' // Your Sequelize Tutor model
+import Tutor from '../models/usuários/representante' // Your Sequelize Tutor model
 
 // Create tutor profile
 export const registerTutor = async (req, res) => {

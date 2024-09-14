@@ -1,10 +1,10 @@
 import bcrypt from 'bcryptjs';
-import User from "../models/usuario"; //  Sequelize User model
+import User from "../models/usuários/usuario"; //  Sequelize User model
 
 // Register a new user
 
 export const register = async (req, res) => {
-  const { name, email, password, age, phone, user_type , city, state, neighborhood } = req.body;
+  const { name, email, password, age, phone, user_type  } = req.body;
 
   try {
     // Check if the email already exists
@@ -22,9 +22,6 @@ export const register = async (req, res) => {
       email,
       age, 
       phone,
-      city,
-      state,
-      neighborhood,
       password: hashedPassword,
       user_type,
     });
@@ -91,9 +88,6 @@ export const findUserByEmail = async (req, res) => {
         user_type,
         age,
         phone,
-        city,
-        state,
-        neighborhood
       });
   
       res.json({ message: 'User updated successfully', user });

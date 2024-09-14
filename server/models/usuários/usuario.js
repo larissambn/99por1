@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/db'; // Import the sequelize instance
+import sequelize from '../../config/db.config'; // Import the sequelize instance
 
 // Define the User model
 const User = sequelize.define('User', {
@@ -10,7 +10,7 @@ const User = sequelize.define('User', {
   },
 
   user_type: {
-    type: DataTypes.ENUM('idoso', 'usuario'),
+    type: DataTypes.ENUM('idoso', 'usuario','representante'),
     allowNull: false,
   },
 
@@ -32,50 +32,17 @@ const User = sequelize.define('User', {
       isEmail: true, // Validate email format
     },
   },
-  
-  phone: {
-    type: DataTypes.NUMBER,
-    allowNull: true,
-    validate: {
-    //  isEmail: true, // Validate phone number format
-    },
-  },
-
-  state: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-    //  isEmail: true, // Validate phone number format
-    },
-  },
-
-  city: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-    //  isEmail: true, // Validate phone number format
-    },
-  },
-  
-  neighborhood: {
-    type: DataTypes.NUMBER,
-    allowNull: false,
-    validate: {
-    //  isEmail: true, // Validate phone number format
-    },
-  },
 
   password: {
     type: DataTypes.STRING,
     allowNull: false,
   },
 
- 
+  socialMedia_link: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 
-//   created_at: {
-//     type: DataTypes.DATE,
-//     defaultValue: DataTypes.NOW,
-// },
 }, {
   timestamps: false, // Disable automatic timestamp columns (createdAt, updatedAt)
   tableName: 'users', // Name of the table in the database
