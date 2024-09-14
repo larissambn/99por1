@@ -41,6 +41,30 @@ const User = sequelize.define('User', {
     },
   },
 
+  state: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+    //  isEmail: true, // Validate phone number format
+    },
+  },
+
+  city: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+    //  isEmail: true, // Validate phone number format
+    },
+  },
+  
+  neighborhood: {
+    type: DataTypes.NUMBER,
+    allowNull: false,
+    validate: {
+    //  isEmail: true, // Validate phone number format
+    },
+  },
+
   password: {
     type: DataTypes.STRING,
     allowNull: false,

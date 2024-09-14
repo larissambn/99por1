@@ -4,7 +4,7 @@ import User from "../models/usuario"; //  Sequelize User model
 // Register a new user
 
 export const register = async (req, res) => {
-  const { name, email, password, age, phone, user_type } = req.body;
+  const { name, email, password, age, phone, user_type , city, state, neighborhood } = req.body;
 
   try {
     // Check if the email already exists
@@ -22,6 +22,9 @@ export const register = async (req, res) => {
       email,
       age, 
       phone,
+      city,
+      state,
+      neighborhood,
       password: hashedPassword,
       user_type,
     });
@@ -74,7 +77,7 @@ export const findUserByEmail = async (req, res) => {
   //Update user
   export const updateUser = async (req, res) => {
     const { id } = req.params;
-    const { name, email, user_type, age, phone } = req.body;
+    const { name, email, user_type, age, phone, city, state, neighborhood } = req.body;
   
     try {
       const user = await User.findByPk(id);
@@ -87,7 +90,10 @@ export const findUserByEmail = async (req, res) => {
         email,
         user_type,
         age,
-        phone
+        phone,
+        city,
+        state,
+        neighborhood
       });
   
       res.json({ message: 'User updated successfully', user });
