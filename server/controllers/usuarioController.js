@@ -4,7 +4,7 @@ import User from "../models/usuários/usuario"; //  Sequelize User model
 // Register a new user
 
 export const register = async (req, res) => {
-  const { name, email, password, age, phone, user_type  } = req.body;
+  const { name, email, password, age, phone, user_type, socialMedia_links , location_id } = req.body;
 
   try {
     // Check if the email already exists
@@ -22,8 +22,10 @@ export const register = async (req, res) => {
       email,
       age, 
       phone,
+      location_id,
       password: hashedPassword,
       user_type,
+      socialMedia_links
     });
 
     res.status(201).json({ message: 'User registered successfully', user: newUser });
@@ -55,13 +57,12 @@ export const login = async (req, res) => {
   }
 };
 
-// Find user by email
+// Find user by id
+export const findUserById = async (req, res) => {  
+  const { id } = req.params;
 
-export const findUserByEmail = async (req, res) => {
-    const { email } = req.params;
-  
     try {
-      const user = await User.findOne({ where: { email } });
+      const user = await User.findOne({ where: { id } });
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
@@ -74,7 +75,9 @@ export const findUserByEmail = async (req, res) => {
   //Update user
   export const updateUser = async (req, res) => {
     const { id } = req.params;
-    const { name, email, user_type, age, phone, city, state, neighborhood } = req.body;
+    const { name, email, password, age, phone, user_type, socialMedia_links , location_id} = req.body;
+    
+    const hashedPassword = await bcrypt.hash(password, 10);
   
     try {
       const user = await User.findByPk(id);
@@ -85,9 +88,12 @@ export const findUserByEmail = async (req, res) => {
       await user.update({
         name,
         email,
-        user_type,
-        age,
+        age, 
         phone,
+        password: hashedPassword,
+        socialMedia_links,
+        location_id,
+        user_type
       });
   
       res.json({ message: 'User updated successfully', user });

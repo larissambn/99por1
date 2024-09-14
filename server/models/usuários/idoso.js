@@ -24,13 +24,6 @@ const Elderly = sequelize.define('Elderly', {
       key: 'id',
     },
   },
-  location_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'Location',
-      key: 'id',
-    },
-  },
 }, {
   timestamps: false,
   tableName: 'elderly',

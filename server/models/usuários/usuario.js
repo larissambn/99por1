@@ -38,6 +38,19 @@ const User = sequelize.define('User', {
     allowNull: false,
   },
 
+  phone: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+
+  location_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'Location',
+      key: 'id',
+    },
+  },
+
   socialMedia_link: {
     type: DataTypes.STRING,
     allowNull: true,

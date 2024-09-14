@@ -12,16 +12,11 @@ import volunteerRouter from './routes/atividadesRoutes.js';
 import reviewRouter from './routes/avaliacaoRoutes.js';
 import signUpRouter from './routes/cadastroRoutes.js';
 import tutorValidationRouter from './routes/validacaoRoutes.js';
-import networkRouter from './routes/redeRoutes.js';
-import oportunityRouter from './routes/oportunidadeRoutes.js';
 import reviewRequestRouter from './routes/notificaçãoRoutes.js';
 
 dotenv.config();
 
 const app = express();
-
-// newtork ? oportunity ? deve ser feito no back?
-// review requests é necessário?
 
 // Middleware
 app.use(cors());

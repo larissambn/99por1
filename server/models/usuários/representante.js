@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../../config/db.config';
-import Elderly from '../usuários/idoso';
 import User from '../usuários/usuario';
 
 // Define the Tutor model
@@ -14,13 +13,6 @@ const Tutor = sequelize.define('Tutor', {
     type: DataTypes.INTEGER,
     references: {
       model: User,
-      key: 'id',
-    },
-  },
-  elderly_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Elderly,
       key: 'id',
     },
   },

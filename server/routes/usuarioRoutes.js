@@ -2,7 +2,7 @@ import express from 'express';
 import {
   register,
   login,
-  findUserByEmail,
+  findUserById,
   updateUser,
   deleteUser,
 } from '../controllers/usuarioController';
@@ -16,10 +16,10 @@ userRouter.post('/register', register);
 userRouter.post('/login', login);
 
 // GET /users/:id - Get user by ID
-userRouter.get('/users/:email', findUserByEmail);
+userRouter.get('/users/:id', findUserById);
 
 // PUT /users/:id - Update user by ID
-userRouter.put('/users/:id', updateUser);
+userRouter.patch('/users/:id', updateUser);
 
 // DELETE /users/:id - Delete user by ID
 userRouter.delete('/users/:id', deleteUser);
