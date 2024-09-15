@@ -5,7 +5,7 @@ import Service from '../funcionalidades/servico';
 
 // Define the ServiceRequest model
 const ServiceRequest = sequelize.define('ServiceRequest', {
-  id: {
+  _id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
