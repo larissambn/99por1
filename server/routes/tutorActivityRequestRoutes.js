@@ -1,11 +1,11 @@
 import express from 'express';
-import { manageServiceRequest } from '../controllers/pedidoServiçoController';
+import { manageActivityRequest } from '../controllers/pedidoAtividadeController';
 import { authenticateUser } from '../middleware/userAuth';
-import { authorizeTutorServiceRequest } from '../middleware/tutorRequestAuth';
+import { authorizeTutorActivityRequest } from '../middleware/tutorRequestAuth';
 
-const tutorServiceRequestRouter = express.Router();
+const tutorActivityRequestRouter = express.Router();
 
-// Route for the tutor to accept or deny a service request for an elderly person
-tutorServiceRequestRouter.put('/tutor/manage-service-request/:requestId', authenticateUser, authorizeTutorServiceRequest, manageServiceRequest);
+// Route for the tutor to accept or deny a Activity request for an elderly person
+tutorActivityRequestRouter.put('/tutor/manage-activity-request/:requestId', authenticateUser, authorizeTutorActivityRequest, manageActivityRequest);
 
-export default tutorServiceRequestRouter;
+export default tutorActivityRequestRouter;

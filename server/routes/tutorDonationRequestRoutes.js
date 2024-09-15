@@ -1,11 +1,11 @@
 import express from 'express';
-import { manageServiceRequest } from '../controllers/pedidoServiçoController';
+import { manageDonationRequest } from '../controllers/pedidoDoaçãoController';
 import { authenticateUser } from '../middleware/userAuth';
-import { authorizeTutorServiceRequest } from '../middleware/tutorRequestAuth';
+import { authorizeTutorDonationRequest } from '../middleware/tutorRequestAuth';
 
-const tutorServiceRequestRouter = express.Router();
+const tutorDonationRequestRouter = express.Router();
 
 // Route for the tutor to accept or deny a service request for an elderly person
-tutorServiceRequestRouter.put('/tutor/manage-service-request/:requestId', authenticateUser, authorizeTutorServiceRequest, manageServiceRequest);
+tutorDonationRequestRouter.put('/tutor/manage-donation-request/:requestId', authenticateUser, authorizeTutorDonationRequest, manageDonationRequest);
 
-export default tutorServiceRequestRouter;
+export default tutorDonationRequestRouter;
