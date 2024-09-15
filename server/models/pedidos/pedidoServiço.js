@@ -5,7 +5,7 @@ import Service from '../funcionalidades/servico';
 
 // Define the ServiceRequest model
 const ServiceRequest = sequelize.define('ServiceRequest', {
-  _id: {
+  id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
@@ -27,7 +27,7 @@ const ServiceRequest = sequelize.define('ServiceRequest', {
     allowNull: false,
   },
   status: {
-    type: DataTypes.ENUM('Requested', 'Pending', 'Approved', 'Denied', 'Finished'),
+    type: DataTypes.ENUM('Requested', 'Approved', 'Denied', 'Finished'),
     defaultValue: 'Requested',
     allowNull: false,
   },

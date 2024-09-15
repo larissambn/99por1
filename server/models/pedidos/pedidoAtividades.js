@@ -27,7 +27,7 @@ const ActivityRequest = sequelize.define('ActivityRequest', {
     allowNull: false,
   },
   status: {
-    type: DataTypes.ENUM('Requested', 'Pending', 'Approved', 'Denied', 'Finished'),
+    type: DataTypes.ENUM('Requested', 'Approved', 'Denied', 'Finished'),
     defaultValue: 'Requested',
     allowNull: false,
   },

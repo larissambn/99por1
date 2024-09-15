@@ -1,8 +1,7 @@
 import ServiceRequest from '../models/ServiceRequest';
-import Service from '../models/Service';
 
 // Controller for the tutor to accept or deny service requests on behalf of the elderly
-export const tutorManageServiceRequest = async (req, res) => {
+export const manageServiceRequest = async (req, res) => {
   const { requestId } = req.params;
   const { action } = req.body; // 'accept' or 'deny'
 
@@ -31,3 +30,6 @@ export const tutorManageServiceRequest = async (req, res) => {
     return res.status(500).json({ message: 'Error managing service request', error });
   }
 };
+
+
+

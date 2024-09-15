@@ -1,5 +1,6 @@
 import ServiceRequest from "../models/pedidos/pedidoServiço"
 import DonationRequest from "../models/pedidos/pedidoDoação"
+import ActivityRequest from "../models/pedidos/pedidoAtividades"
 
 // Middleware to authorize tutors to manage elderly service requests
 export const authorizeTutorServiceRequest = async (req, res, next) => {
@@ -28,7 +29,7 @@ export const authorizeTutorServiceRequest = async (req, res, next) => {
 export const authorizeTutorDonationRequest = async (req, res, next) => {
   const tutorId = req.user.id;
 
-  // Fetch the elderly user linked to the service request
+  // Fetch the elderly user linked to the donation request
   const { donation_requestId } = req.params;
   const donationRequest = await DonationRequest.findByPk(donation_requestId, {
     include: [{ model: Donation, as: 'donation', include: ['elderly'] }],
@@ -38,7 +39,7 @@ export const authorizeTutorDonationRequest = async (req, res, next) => {
     return res.status(404).json({ message: 'Donation request not found' });
   }
 
-  // Check if the tutor is responsible for the elderly linked to the service request
+  // Check if the tutor is responsible for the elderly linked to the donation request
   const elderly = donationRequest.service.elderly;
 
   if (elderly.tutor_id !== tutorId) {
@@ -52,9 +53,9 @@ export const authorizeTutorDonationRequest = async (req, res, next) => {
 export const authorizeTutorActivityRequest = async (req, res, next) => {
   const tutorId = req.user.id;
 
-  // Fetch the elderly user linked to the service request
+  // Fetch the elderly user linked to the activity request
   const { activity_requestId } = req.params;
-  const activityRequest = await DonationRequest.findByPk(activity_requestId, {
+  const activityRequest = await ActivityRequest.findByPk(activity_requestId, {
     include: [{ model: Donation, as: 'donation', include: ['elderly'] }],
   });
 
@@ -62,7 +63,7 @@ export const authorizeTutorActivityRequest = async (req, res, next) => {
     return res.status(404).json({ message: 'Donation request not found' });
   }
 
-  // Check if the tutor is responsible for the elderly linked to the service request
+  // Check if the tutor is responsible for the elderly linked to the activity request
   const elderly = activityRequest.service.elderly;
 
   if (elderly.tutor_id !== tutorId) {
