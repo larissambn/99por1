@@ -9,6 +9,8 @@ export const manageServiceRequest = async (req, res) => {
     // Fetch the service request
     const serviceRequest = await ServiceRequest.findByPk(requestId);
 
+    const currentDate = new Date();
+
     if (!serviceRequest) {
       return res.status(404).json({ message: 'Service request not found' });
     }
@@ -18,8 +20,19 @@ export const manageServiceRequest = async (req, res) => {
       serviceRequest.status = 'Approved';
     } else if (action === 'deny') {
       serviceRequest.status = 'Denied';
+    } else if (action === 'finish') {
+      // Allow the elderly to manually finish the service request
+      serviceRequest.status = 'Finished';
+      serviceRequest.completion_date = currentDate;
     } else {
       return res.status(400).json({ message: 'Invalid action. Must be either "accept" or "deny"' });
+    }
+
+    if (serviceRequest.completion_date && currentDate > serviceRequest.completion_date) {
+      if (action === 'Finished') {
+        serviceRequest.status = 'Finished'; 
+        return res.json({ message: 'Service request has been marked as finished', serviceRequest });
+      }
     }
 
     // Save the updated service request
