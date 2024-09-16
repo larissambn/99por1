@@ -3,7 +3,7 @@ import ServiceReview from '../models/ServiceReview';
 import Elderly from '../models/usuários/elderly';
 
 // Controller for elderly to review the user
-export const elderlySubmitReview = async (req, res) => {
+export const submitServiceReview = async (req, res) => {
   const { serviceId } = req.params;
   const { rating_user, comment_user } = req.body;
 
