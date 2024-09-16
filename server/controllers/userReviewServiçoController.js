@@ -1,7 +1,6 @@
-import ServiceReview from '../models/ServiceReview';
-import ServiceRequest from '../models/ServiceRequest';
-import Service from '../models/Service';
-import { Op } from 'sequelize';
+import ServiceReview from '../models/avaliação/avaliacaoServiço';
+import ServiceRequest from '../models/pedidos/pedidoServiço';
+import Service from '../models/funcionalidades/servicos';
 
 // Controller to submit a review for the elderly service
 export const submitServiceReview = async (req, res) => {
