@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config';
+import sequelize from '../../config/db.config.js';
 
 // Define the ServiceCategory model
 const ServiceCategory = sequelize.define('ServiceCategory', {

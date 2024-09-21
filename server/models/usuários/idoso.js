@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config';
-import User from '../usuários/usuario';
-import Tutor from '../usuários/representante';
+import sequelize from '../../config/db.config.js';
+import User from '../usuários/usuario.js';
+import Tutor from '../usuários/representante.js';
 
 // Define the Elderly model
 const Elderly = sequelize.define('Elderly', {

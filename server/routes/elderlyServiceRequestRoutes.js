@@ -1,7 +1,7 @@
 import express from 'express';
-import { authenticateElderly } from '../middleware/elderlyAuth';
-import { authorizeElderlyServiceRequest } from "../middleware/elderlyRequestAuth"
-import { manageServiceRequest } from '../controllers/pedidoServiçoController';
+import { authenticateElderly } from '../middleware/elderlyAuth.js';
+import { authorizeElderlyServiceRequest } from "../middleware/elderlyRequestAuth.js"
+import { manageServiceRequest } from '../controllers/pedidoServiçoController.js';
 
 const elderlyServiceRequestRouter = express.Router();
 

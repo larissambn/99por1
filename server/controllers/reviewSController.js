@@ -1,6 +1,6 @@
-import ServiceRequest from '../models/ServiceRequest';
-import ServiceReview from '../models/ServiceReview';
-import Elderly from '../models/usuários/elderly';
+import ServiceRequest from '../models/pedidos/pedidoServiço.js';
+import ServiceReview from '../models/avaliação/avaliacaoServiço.js';
+import Elderly from '../models/usuários/idoso.js';
 
 // Controller for elderly to review the user
 export const submitServiceReview = async (req, res) => {

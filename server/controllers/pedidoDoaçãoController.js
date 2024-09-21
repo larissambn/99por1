@@ -1,4 +1,4 @@
-import DonationRequest from '../models/pedidos/pedidoDoação';
+import DonationRequest from '../models/pedidos/pedidoDoação.js';
 
 // Controller for the tutor to accept or deny donation requests on behalf of the elderly
 export const manageDonationRequest = async (req, res) => {

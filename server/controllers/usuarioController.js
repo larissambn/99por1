@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import User from "../models/usuários/usuario"; //  Sequelize User model
+import User from "../models/usuários/usuario.js"; //  Sequelize User model
 
 // Register a new user
 

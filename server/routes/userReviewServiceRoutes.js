@@ -1,6 +1,6 @@
 import express from 'express';
-import { submitServiceReview } from '../controllers/userReviewServiçoController';
-import { authenticateUser } from '../middleware/userAuth'; // Assuming same auth is used for users
+import { submitServiceReview } from '../controllers/userReviewServiçoController.js';
+import { authenticateUser } from '../middleware/userAuth.js'; // Assuming same auth is used for users
 
 const userReviewServiçoRouter = express.Router();
 

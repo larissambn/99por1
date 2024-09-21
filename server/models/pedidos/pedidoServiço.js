@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config';
-import User from '../usuários/usuario';
-import Service from '../funcionalidades/servico';
+import sequelize from '../../config/db.config.js';
+import User from '../usuários/usuario.js';
+import Service from '../funcionalidades/servico.js';
 
 // Define the ServiceRequest model
 const ServiceRequest = sequelize.define('ServiceRequest', {

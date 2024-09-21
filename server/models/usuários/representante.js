@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config';
-import User from '../usuários/usuario';
+import sequelize from '../../config/db.config.js';
+import User from '../usuários/usuario.js';
 
 // Define the Tutor model
 const Tutor = sequelize.define('Tutor', {

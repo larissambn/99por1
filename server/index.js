@@ -1,20 +1,17 @@
-import 'dotenv/config';
 import express from 'express';
-import cors from 'cors';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
-// Import routes
-import authRouter from './routes/acessoRoutes.js';
-import userRouter from './routes/usuarioRoutes.js';
-import serviceRouter from './routes/serviçoRoutes.js';
-import donationRouter from './routes/doaçãoRoutes.js';
-import volunteerRouter from './routes/atividadesRoutes.js';
-import reviewRouter from './routes/avaliacaoRoutes.js';
-import signUpRouter from './routes/cadastroRoutes.js';
-import tutorValidationRouter from './routes/validacaoRoutes.js';
-import reviewRequestRouter from './routes/notificaçãoRoutes.js';
-
-dotenv.config();
+// Import your elderly activity request route
+import userReviewServiçoRouter from "./routes/userReviewServiceRoutes.js"
+import tutorServiceRequestRouter from "./routes/tutorServiceRequestRoutes.js"
+import tutorReviewRouter from "./routes/tutorReviewServiceRoutes.js"
+import tutorDonationRequestRouter from "./routes/tutorDonationRequestRoutes.js"
+import tutorActivityRequestRouter from "./routes/tutorActivityRequestRoutes.js"
+import elderlyServiceRequestRouter from "./routes/elderlyServiceRequestRoutes.js"
+import elderlyActivityRequestRouter from "./routes/elderlyActivityRequestRoutes.js"; 
+import elderlyDonationRequestRouter from "./routes/elderlyDonationRequestRoutes.js"
+import elderlyReviewrouter from "./routes/elderlyReviewServiceRoutes.js"
 
 const app = express();
 
@@ -23,30 +20,23 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//importar database?
+app.use('/api', userReviewServiçoRouter); 
+app.use('/api', tutorServiceRequestRouter); 
+app.use('/api', tutorReviewRouter); 
+app.use('/api', tutorDonationRequestRouter); 
+app.use('/api', tutorActivityRequestRouter); 
+app.use('/api', elderlyServiceRequestRouter); 
+app.use('/api', elderlyDonationRequestRouter); 
+app.use('/api', elderlyActivityRequestRouter); 
+app.use('/api', elderlyReviewrouter); 
 
-// Rotas
-app.use(`./api/auth`, authRouter);
-app.use(`/api/services`, serviceRouter);
-app.use(`/api/donations`, donationRouter);
-app.use(`/api/volunteer`, volunteerRouter)
-app.use(`/api/signUp`,signUpRouter);
-app.use(`/api/tutorValidation`,tutorValidationRouter);
-app.use(`/api/network`,networkRouter);
-app.use(`/api/oportunity`,oportunityRouter);
+// //Connect database
+// sequelize.authenticate()
+//   .then(() => console.log('Connected to MySQL database'))
+//   .catch(error => console.error('Database connection error:', error));
 
-// how to add user profile?
-app.use(`/api/users`, userRouter);
-app.use(`/api/user/reviews`,reviewRouter);
-app.use(`/api/user/reviewRequest`,reviewRequestRouter);
-
-//Connect database
-sequelize.authenticate()
-  .then(() => console.log('Connected to MySQL database'))
-  .catch(error => console.error('Database connection error:', error));
-
-// Iniciar servidor
+// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

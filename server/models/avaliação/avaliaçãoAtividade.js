@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config';
-import ActivityRequest from '../pedidos/pedidoAtividades';
+import sequelize from '../../config/db.config.js';
+import ActivityRequest from '../pedidos/pedidoAtividades.js';
 
 // Define the Review model
 const ActivityReview = sequelize.define('ActivityReview', {

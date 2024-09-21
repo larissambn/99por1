@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config';
-import Elderly from '../usuários/usuario';
-import ActivityType from '../tipos/tipoDeAtividade';
+import sequelize from '../../config/db.config.js';
+import Elderly from '../usuários/usuario.js';
+import ActivityType from '../tipos/tipoDeAtividade.js';
 
 // Define the Activity model
 const Activity = sequelize.define('Activity', {

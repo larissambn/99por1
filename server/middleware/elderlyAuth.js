@@ -1,6 +1,6 @@
 // middleware/auth.js
 import jwt from 'jsonwebtoken';
-import User from '../models/usuários/usuario';
+import User from '../models/usuários/usuario.js';
 
 export const authenticateElderly = async (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];

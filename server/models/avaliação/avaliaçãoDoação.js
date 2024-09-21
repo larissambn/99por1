@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config';
-import DonationRequest from '../pedidos/pedidoDoação';
+import sequelize from '../../config/db.config.js';
+import DonationRequest from '../pedidos/pedidoDoação.js';
 
 // Define the Review model
 const DonationReview = sequelize.define('DonationReview', {

@@ -1,5 +1,5 @@
 // middleware/authorizeElderly.js
-import ServiceRequest from '../models/pedidos/pedidoServiço';
+import ServiceRequest from '../models/pedidos/pedidoServiço.js';
 
 export const authorizeElderlyToReview = async (req, res, next) => {
   const { serviceId } = req.params;

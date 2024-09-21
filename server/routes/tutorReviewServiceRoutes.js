@@ -1,7 +1,7 @@
 import express from 'express';
-import { submitServiceReview } from '../controllers/reviewSController';
-import { authenticateTutor } from '../middleware/tutorAuth'; // Authentication middleware
-import { authorizeTutorReviewService } from '../middleware/authTutorReview';
+import { submitServiceReview } from '../controllers/reviewSController.js';
+import { authenticateTutor } from '../middleware/tutorAuth.js'; // Authentication middleware
+import { authorizeTutorReviewService } from '../middleware/authTutorReview.js';
 
 const tutorReviewRouter = express.Router();
 

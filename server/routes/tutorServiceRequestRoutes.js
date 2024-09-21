@@ -1,7 +1,7 @@
 import express from 'express';
-import { manageServiceRequest } from '../controllers/pedidoServiçoController';
-import { authenticateTutor } from '../middleware/tutorAuth';
-import { authorizeTutorServiceRequest } from '../middleware/tutorRequestAuth';
+import { manageServiceRequest } from '../controllers/pedidoServiçoController.js';
+import { authenticateTutor } from '../middleware/tutorAuth.js';
+import { authorizeTutorServiceRequest } from '../middleware/tutorRequestAuth.js';
 
 const tutorServiceRequestRouter = express.Router();
 

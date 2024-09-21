@@ -1,6 +1,6 @@
 // middleware/authorizeTutor.js
-import Elderly from '../models/usuários/idoso';
-import ServiceRequest from '../models/pedidos/pedidoServiço';
+import Elderly from '../models/usuários/idoso.js';
+import ServiceRequest from '../models/pedidos/pedidoServiço.js';
 
 export const authorizeTutorReviewService = async (req, res, next) => {
   const { serviceId } = req.params;

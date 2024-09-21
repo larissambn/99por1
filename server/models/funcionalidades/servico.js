@@ -1,8 +1,8 @@
 
 import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config';
-import Elderly from '../usuários/usuario';
-import ServiceType from '../tipos/tipoDeServiço';
+import sequelize from '../../config/db.config.js';
+import Elderly from '../usuários/usuario.js';
+import ServiceType from '../tipos/tipoDeServiço.js';
 
 // Define the Service model
 const Service = sequelize.define('Service', {

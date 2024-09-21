@@ -1,7 +1,7 @@
 import express from 'express';
-import { manageDonationRequest } from '../controllers/pedidoDoaçãoController';
-import { authenticateTutor } from '../middleware/tutorAuth';
-import { authorizeTutorDonationRequest } from '../middleware/tutorRequestAuth';
+import { manageDonationRequest } from '../controllers/pedidoDoaçãoController.js';
+import { authenticateTutor } from '../middleware/tutorAuth.js';
+import { authorizeTutorDonationRequest } from '../middleware/tutorRequestAuth.js';
 
 const tutorDonationRequestRouter = express.Router();
 

@@ -1,4 +1,4 @@
-import ActivityRequest from '../models/pedidos/pedidoAtividades';
+import ActivityRequest from '../models/pedidos/pedidoAtividades.js';
 
 // Controller for the tutor to accept or deny activity requests on behalf of the elderly
 export const manageActivityRequest = async (req, res) => {

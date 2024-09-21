@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config';
-import ServiceCategory from '../grupos/grupoDeServiço';
+import sequelize from '../../config/db.config.js';
+import ServiceCategory from '../grupos/grupoDeServiço.js';
 
 // Define the ServiceType model
 const ServiceType = sequelize.define('ServiceType', {

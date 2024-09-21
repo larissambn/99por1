@@ -1,7 +1,7 @@
 import express from 'express';
-import { manageActivityRequest } from '../controllers/pedidoAtividadeController';
-import { authenticateTutor } from '../middleware/tutorAuth';
-import { authorizeTutorActivityRequest } from '../middleware/tutorRequestAuth';
+import { manageActivityRequest } from '../controllers/pedidoAtividadeController.js';
+import { authenticateTutor } from '../middleware/tutorAuth.js';
+import { authorizeTutorActivityRequest } from '../middleware/tutorRequestAuth.js';
 
 const tutorActivityRequestRouter = express.Router();
 

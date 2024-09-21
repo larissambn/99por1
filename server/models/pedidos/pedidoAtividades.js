@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config';
-import User from '../usuários/usuario';
-import Activity from '../funcionalidades/atividades';
+import sequelize from '../../config/db.config.js';
+import User from '../usuários/usuario.js';
+import Activity from '../funcionalidades/atividades.js';
 
 // Define the ActivityRequest model
 const ActivityRequest = sequelize.define('ActivityRequest', {

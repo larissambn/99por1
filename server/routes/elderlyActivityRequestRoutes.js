@@ -1,7 +1,7 @@
 import express from 'express';
-import { authenticateElderly } from '../middleware/elderlyAuth';
-import { authorizeElderlyActivityRequest } from "../middleware/elderlyRequestAuth"
-import { manageActivityRequest } from '../controllers/pedidoAtividadeController';
+import { authenticateElderly } from '../middleware/elderlyAuth.js';
+import { authorizeElderlyActivityRequest } from "../middleware/elderlyRequestAuth.js"
+import { manageActivityRequest } from '../controllers/pedidoAtividadeController.js';
 
 const elderlyActivityRequestRouter = express.Router();
 

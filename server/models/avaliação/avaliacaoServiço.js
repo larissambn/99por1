@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config';
-import Service from '../funcionalidades/servico';
-import User from '../usuários/usuario';
+import sequelize from '../../config/db.config.js';
+import Service from '../funcionalidades/servico.js';
+import User from '../usuários/usuario.js';
 
 // Define the Review model
 const ServiceReview = sequelize.define('ServiceReview', {

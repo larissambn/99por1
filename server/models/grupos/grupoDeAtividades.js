@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config';
+import sequelize from '../../config/db.config.js';
 
 // Define the ActivtyCategory model
 const ActivityCategory = sequelize.define('ActivityCategory', {

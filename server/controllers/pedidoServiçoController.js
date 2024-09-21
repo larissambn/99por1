@@ -1,4 +1,4 @@
-import ServiceRequest from '../models/ServiceRequest';
+import ServiceRequest from '../models/pedidos/pedidoServiço.js';
 
 // Controller for the tutor to accept or deny service requests on behalf of the elderly
 export const manageServiceRequest = async (req, res) => {

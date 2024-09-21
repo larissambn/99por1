@@ -1,7 +1,7 @@
 import express from 'express';
-import { submitServiceReview } from "../controllers/reviewSController";
-import { authenticateElderly } from '../middleware/elderlyAuth'; // Authentication middleware
-import { authorizeElderlyToReview } from "../middleware/authElderlyReview"
+import { submitServiceReview } from "../controllers/reviewSController.js";
+import { authenticateElderly } from '../middleware/elderlyAuth.js'; // Authentication middleware
+import { authorizeElderlyToReview } from "../middleware/authElderlyReview.js"
 
 const elderlyReviewrouter = express.Router();
 

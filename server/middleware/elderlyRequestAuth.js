@@ -1,7 +1,7 @@
-import Elderly from '../models/usuários/idoso';
-import ServiceRequest from '../models/pedidos/pedidoServiço';
-import DonationRequest from '../models/pedidos/pedidoDoação';
-import ActivityRequest from '../models/pedidos/pedidoAtividades';
+import Elderly from '../models/usuários/idoso.js';
+import ServiceRequest from '../models/pedidos/pedidoServiço.js';
+import DonationRequest from '../models/pedidos/pedidoDoação.js';
+import ActivityRequest from '../models/pedidos/pedidoAtividades.js';
 
 // Middleware for elderly to authorize Service Request
 export const authorizeElderlyServiceRequest = async (req, res, next) => {

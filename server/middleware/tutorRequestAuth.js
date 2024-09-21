@@ -1,7 +1,7 @@
 
-import ServiceRequest from "../models/pedidos/pedidoServiço"
-import DonationRequest from "../models/pedidos/pedidoDoação"
-import ActivityRequest from "../models/pedidos/pedidoAtividades"
+import ServiceRequest from "../models/pedidos/pedidoServiço.js"
+import DonationRequest from "../models/pedidos/pedidoDoação.js"
+import ActivityRequest from "../models/pedidos/pedidoAtividades.js"
 
 // Middleware to authorize tutors to manage elderly service requests
 export const authorizeTutorServiceRequest = async (req, res, next) => {

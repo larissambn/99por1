@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config';
-import Elderly from '../usuários/usuario';
-import DonationType from '../tipos/tipoDeDoação';
+import sequelize from '../../config/db.config.js';
+import Elderly from '../usuários/usuario.js';
+import DonationType from '../tipos/tipoDeDoação.js';
 
 // Define the Donation model
 const Donation = sequelize.define('Donation', {

@@ -1,7 +1,7 @@
 import express from 'express';
-import { authenticateElderly } from '../middleware/elderlyAuth';
-import { authorizeElderlyDonationRequest } from "../middleware/elderlyRequestAuth"
-import { manageDonationRequest } from '../controllers/pedidoDoaçãoController';
+import { authenticateElderly } from '../middleware/elderlyAuth.js';
+import { authorizeElderlyDonationRequest } from "../middleware/elderlyRequestAuth.js"
+import { manageDonationRequest } from '../controllers/pedidoDoaçãoController.js';
 
 const elderlyDonationRequestRouter = express.Router();
 
