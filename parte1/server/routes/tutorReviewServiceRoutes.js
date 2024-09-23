@@ -1,5 +1,5 @@
 import express from 'express';
-import { submitServiceReview } from '../controllers/reviewSController.js';
+import { submitServiceReview } from '../controllers/reviewServiçoController.js';
 import { authenticateTutor } from '../middleware/tutorAuth.js'; // Authentication middleware
 import { authorizeTutorReviewService } from '../middleware/authTutorReview.js';
 

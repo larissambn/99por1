@@ -1,50 +1,36 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js';
-import ActivityRequest from '../pedidos/pedidoAtividades.js';
+import { Schema, model } from 'mongoose';
 
-// Define the Review model
-const ActivityReview = sequelize.define('ActivityReview', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
+const activityReviewSchema = new Schema({
   activityRequest_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: ActivityRequest,
-      key: 'id',
-    }
+    type: Schema.Types.ObjectId,
+    ref: 'ActivityRequest',
+    required: true,
   },
   rating_elderly: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    validate: {
-      min: 0,
-      max: 5,
-    },
-    allowNull:false
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5,
   },
   comment_elderly: {
-    type: DataTypes.TEXT,
-    allowNull:true
+    type: String,
+    required: false,
   },
   rating_user: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    validate: {
-      min: 0,
-      max: 5,
-    },
-    allowNull:false
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5,
   },
   comment_user: {
-    type: DataTypes.TEXT,
-    allowNull:true
+    type: String,
+    required: false,
   }
 }, {
   timestamps: false,
-  tableName: 'Activity Reviews',
+  collection: 'activity_reviews',
 });
+
+const ActivityReview = model('ActivityReview', activityReviewSchema);
 
 export default ActivityReview;

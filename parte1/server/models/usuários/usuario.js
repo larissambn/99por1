@@ -1,64 +1,23 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js'; // Import the sequelize instance
+import { model, Schema } from "mongoose";
 
-// Define the User model
-const User = sequelize.define('User', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-
-  user_type: {
-    type: DataTypes.ENUM('idoso', 'usuario','representante'),
-    allowNull: false,
-  },
-
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-
-  age: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-
+const userSchema = new Schema({
+  name: { type: String, trim: true, required: true },
+  age: { type: Number, required: true },
   email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true, // Ensure email is unique
-    validate: {
-      isEmail: true, // Validate email format
-    },
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    match: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/gm,
   },
+  phoneNumber: { type: Number, required: true },
+  role: { type: String, enum: ["elderly", "user","tutor","admin"], default: "user", required: true },
+  social_media :  { type: String, required: false },
+  location: [{ type: Schema.Types.ObjectId, ref: "Location", required:true  }], 
+  password: { type: String, required: true },
 
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-
-  phone: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-
-  location_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'Location',
-      key: 'id',
-    },
-  },
-
-  socialMedia_link: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-
-}, {
-  timestamps: false, // Disable automatic timestamp columns (createdAt, updatedAt)
-  tableName: 'users', // Name of the table in the database
 });
+
+const User = model('User', userSchema);
 
 export default User;

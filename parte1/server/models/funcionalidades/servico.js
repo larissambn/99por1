@@ -1,59 +1,46 @@
+import { Schema, model } from 'mongoose';
 
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js';
-import Elderly from '../usuários/usuario.js';
-import ServiceType from '../tipos/tipoDeServiço.js';
-
-// Define the Service model
-const Service = sequelize.define('Service', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
+const serviceSchema = new Schema({
   elderly_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Elderly,
-      key: 'id',
-    },
+    type: Schema.Types.ObjectId,
+    ref: 'Elderly', 
+    required: true,
   },
   type_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: ServiceType,
-      key: 'id',
-    },
+    type: Schema.Types.ObjectId,
+    ref: 'ServiceType',
+    required: true,
   },
-  Service_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
+  service_name: {
+    type: String,
+    required: true, 
   },
   description: {
-    type: DataTypes.TEXT,
-    allowNull: false,
+    type: String, 
+    required: true,
   },
   max_price: {
-    type: DataTypes.DECIMAL(10, 2),
+    type: Number, 
+    required: false,
   },
   min_price: {
-    type: DataTypes.DECIMAL(10, 2),
+    type: Number,
+    required: false,
   },
   experience: {
-    type: DataTypes.TEXT,
-    allowNull: false,
+    type: String, 
+    required: true,
   },
   knowledge: {
-    type: DataTypes.TEXT,
-    allowNull: true,
+    type: String, 
+    required: false,
   },
   reference: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  }
-}, {
-  timestamps: false,
-  tableName: 'services',
+    type: String, 
+    required: false,
+  },
 });
+
+const Service = model('Service', serviceSchema);
 
 export default Service;

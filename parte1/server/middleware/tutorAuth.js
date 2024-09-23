@@ -14,7 +14,7 @@ export const authenticateTutor = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     // Check if the user is a tutor
-    const user = await User.findByPk(decoded.id);
+    const user = await User.findById(decoded.id);
     if (!user || user.role !== 'Tutor') {
       return res.status(403).json({ message: 'Forbidden: You do not have permission to perform this action' });
     }

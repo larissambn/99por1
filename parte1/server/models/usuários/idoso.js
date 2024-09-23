@@ -1,32 +1,21 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js';
-import User from '../usuários/usuario.js';
-import Tutor from '../usuários/representante.js';
+import { Schema, model } from 'mongoose';
 
-// Define the Elderly model
-const Elderly = sequelize.define('Elderly', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
+const elderlySchema = new Schema({
+  
   user_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: User,
-      key: 'id',
-    },
+    type: Schema.Types.ObjectId,  
+    ref: 'User',
+    required: true  
   },
+  
   tutor_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Tutor,
-      key: 'id',
-    },
+    type: Schema.Types.ObjectId,  
+    ref: 'Tutor',
+    required: false  
   },
-}, {
-  timestamps: false,
-  tableName: 'elderly',
 });
+
+// Export the Elderly model
+const Elderly = model('Elderly', elderlySchema);
 
 export default Elderly;

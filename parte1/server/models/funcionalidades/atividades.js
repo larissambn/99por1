@@ -1,40 +1,26 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js';
-import Elderly from '../usuários/usuario.js';
-import ActivityType from '../tipos/tipoDeAtividade.js';
+import { Schema, model } from 'mongoose';
 
-// Define the Activity model
-const Activity = sequelize.define('Activity', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
+const activitySchema = new Schema({
   elderly_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Elderly,
-      key: 'id',
-    },
+    type: Schema.Types.ObjectId,
+    ref: 'Elderly', 
+    required: true,
   },
-  activityType_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: ActivityType,
-      key: 'id',
-    },
+  type_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'activityType',
+    required: true,
   },
   activity_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: String,
+    required: true, 
   },
   description: {
-    type: DataTypes.TEXT,
-    allowNull: false,
+    type: String, 
+    required: true,
   },
-}, {
-  timestamps: false,
-  tableName: 'Activity',
 });
+
+const Activity = model('Activity', activitySchema);
 
 export default Activity;

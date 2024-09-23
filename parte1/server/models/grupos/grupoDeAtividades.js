@@ -1,20 +1,14 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js';
+import { Schema, model } from 'mongoose';
 
-// Define the ActivtyCategory model
-const ActivityCategory = sequelize.define('ActivityCategory', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
+// Define the activityCategory schema
+const activityCategorySchema = new Schema({
   category_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: String,
+    required: true, // Equivalent to allowNull: false
   },
-}, {
-  timestamps: false,
-  tableName: 'activity_categories',
 });
+
+// Create the activityCategory model
+const ActivityCategory = model('ActivityCategory', activityCategorySchema);
 
 export default ActivityCategory;

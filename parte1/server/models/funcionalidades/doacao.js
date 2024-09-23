@@ -1,40 +1,26 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js';
-import Elderly from '../usuários/usuario.js';
-import DonationType from '../tipos/tipoDeDoação.js';
+import { Schema, model } from 'mongoose';
 
-// Define the Donation model
-const Donation = sequelize.define('Donation', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
+const donationSchema = new Schema({
   elderly_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Elderly,
-      key: 'id',
-    },
+    type: Schema.Types.ObjectId,
+    ref: 'Elderly', 
+    required: true,
   },
-  donationType_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: DonationType,
-      key: 'id',
-    },
+  type_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'DonationType',
+    required: true,
   },
   donation_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: String,
+    required: true, 
   },
   description: {
-    type: DataTypes.TEXT,
-    allowNull: false,
+    type: String, 
+    required: true,
   },
-}, {
-  timestamps: false,
-  tableName: 'Donations',
 });
+
+const Donation = model('Donation', donationSchema);
 
 export default Donation;

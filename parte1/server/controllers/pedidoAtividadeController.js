@@ -7,10 +7,10 @@ export const manageActivityRequest = async (req, res) => {
 
   try {
     // Fetch the activity request
-    const activityRequest = await ActivityRequest.findByPk(requestId);
+    const activityRequest = await ActivityRequest.findById(requestId);
 
     if (!activityRequest) {
-      return res.status(404).json({ message: 'activity request not found' });
+      return res.status(404).json({ message: 'Activity request not found' });
     }
 
     // Handle the accept/deny logic
@@ -25,11 +25,8 @@ export const manageActivityRequest = async (req, res) => {
     // Save the updated activity request
     await activityRequest.save();
 
-    return res.json({ message: `activity request ${action}ed successfully`, activityRequest });
+    return res.json({ message: `Activity request ${action}ed successfully`, activityRequest });
   } catch (error) {
     return res.status(500).json({ message: 'Error managing activity request', error });
   }
 };
-
-
-

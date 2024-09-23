@@ -1,56 +1,43 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js';
-import User from '../usuários/usuario.js';
-import Service from '../funcionalidades/servico.js';
+import { model, Schema } from "mongoose";
 
-// Define the ServiceRequest model
-const ServiceRequest = sequelize.define('ServiceRequest', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
+// Define the ServiceRequest Schema
+const serviceRequestSchema = new Schema({
   service_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Service,
-      key: 'id',
-    },
-    allowNull: false,
+    type: Schema.Types.ObjectId, 
+    ref: 'Service',
+    required: true,
   },
   user_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: User,
-      key: 'id',
-    },
-    allowNull: false,
+    type: Schema.Types.ObjectId, 
+    ref: 'User',
+    required: true,
   },
   status: {
-    type: DataTypes.ENUM('Requested', 'Approved', 'Denied', 'Finished'),
-    defaultValue: 'Requested',
-    allowNull: false,
+    type: String,
+    enum: ['Requested', 'Approved', 'Denied', 'Finished'], 
+    default: 'Requested',
+    required: true,
   },
   request_date: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: DataTypes.NOW,
+    type: Date,
+    default: Date.now(), 
+    required: true,
   },
   scheduled_date: {
-    type: DataTypes.DATE,
-    allowNull: false,
+    type: Date,
+    required: true,
   },
   completion_date: {
-    type: DataTypes.DATE,
-    allowNull: true,
+    type: Date,
+    required: false, 
   },
   description: {
-    type: DataTypes.TEXT,
-    allowNull: false,
+    type: String, 
+    required: true,
   },
-}, {
-  timestamps: false,
-  tableName: 'service_requests',
 });
+
+// Create the ServiceRequest model
+const ServiceRequest = model('ServiceRequest', serviceRequestSchema);
 
 export default ServiceRequest;

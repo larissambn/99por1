@@ -1,28 +1,10 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js';
-import ServiceCategory from '../grupos/grupoDeServiço.js';
+import { model, Schema } from "mongoose";
 
-// Define the ServiceType model
-const ServiceType = sequelize.define('ServiceType', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  ServiceType_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  category_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: ServiceCategory,
-      key: 'id',
-    },
-  },
-}, {
-  timestamps: false,
-  tableName: 'service_types',
+const serviceTypeSchema = new Schema({
+  serviceType_name: { type: String, required: true },
+  categoria_id: [{ type: Schema.Types.ObjectId, ref: "Categoria_serviços", required: true  }], 
 });
+
+const ServiceType = model('ServiceType', serviceTypeSchema);
 
 export default ServiceType;

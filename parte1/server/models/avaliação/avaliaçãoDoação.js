@@ -1,50 +1,36 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js';
-import DonationRequest from '../pedidos/pedidoDoação.js';
+import { Schema, model } from 'mongoose';
 
-// Define the Review model
-const DonationReview = sequelize.define('DonationReview', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
+const donationReviewSchema = new Schema({
   donationRequest_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: DonationRequest,
-      key: 'id',
-    }
+    type: Schema.Types.ObjectId,
+    ref: 'DonationRequest',
+    required: true,
   },
   rating_elderly: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    validate: {
-      min: 0,
-      max: 5,
-    },
-    allowNull:false
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5,
   },
   comment_elderly: {
-    type: DataTypes.TEXT,
-    allowNull:true
+    type: String,
+    required: false,
   },
   rating_user: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    validate: {
-      min: 0,
-      max: 5,
-    },
-    allowNull:false
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5,
   },
   comment_user: {
-    type: DataTypes.TEXT,
-    allowNull:true
+    type: String,
+    required: false,
   }
 }, {
   timestamps: false,
-  tableName: 'Donation Reviews',
+  collection: 'donation_reviews',
 });
+
+const DonationReview = model('DonationReview', donationReviewSchema);
 
 export default DonationReview;

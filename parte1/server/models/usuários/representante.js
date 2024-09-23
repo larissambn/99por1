@@ -1,33 +1,11 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js';
-import User from '../usuários/usuario.js';
+import { model, Schema } from "mongoose";
 
-// Define the Tutor model
-const Tutor = sequelize.define('Tutor', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  user_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: User,
-      key: 'id',
-    },
-  },
-  dependency: {
-    type: DataTypes.STRING,
-    allowNull:false
-  },
-  relationship: {
-    type: DataTypes.STRING,
-    allowNull:false
-  },
-  
-}, {
-  timestamps: false,
-  tableName: 'tutors',
+const tutorSchema = new Schema({
+  user_id: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  dependency: { type: String, required: true },
+  relationship: { type: String, required: true }
 });
+
+const Tutor = model('Tutor', tutorSchema);
 
 export default Tutor;

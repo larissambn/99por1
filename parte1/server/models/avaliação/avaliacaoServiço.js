@@ -1,59 +1,38 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js';
-import Service from '../funcionalidades/servico.js';
-import User from '../usuários/usuario.js';
+import { Schema, model } from 'mongoose';
 
-// Define the Review model
-const ServiceReview = sequelize.define('ServiceReview', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
+const serviceReviewSchema = new Schema({
   service_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Service,
-      key: 'id',
-    }
+    type: Schema.Types.ObjectId,
+    ref: 'Service',
+    required: true, 
   },
   rating_elderly: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    validate: {
-      min: 0,
-      max: 5,
-    },
-    allowNull:false
+    type: Number,
+    required: true, 
+    min: 0,
+    max: 5, 
   },
   comment_elderly: {
-    type: DataTypes.TEXT,
-    allowNull:true
+    type: String, 
+    required: false, 
   },
   user_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: User,
-      key: 'id',
-    },
-    allowNull: false,
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true, 
   },
   rating_user: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    validate: {
-      min: 0,
-      max: 5,
-    },
-    allowNull:false
+    type: Number,
+    required: true, 
+    min: 0, 
+    max: 5, 
   },
   comment_user: {
-    type: DataTypes.TEXT,
-    allowNull:true
+    type: String, 
+    required: false, 
   }
-}, {
-  timestamps: false,
-  tableName: 'Service Reviews',
 });
+
+const ServiceReview = model('ServiceReview', serviceReviewSchema);
 
 export default ServiceReview;

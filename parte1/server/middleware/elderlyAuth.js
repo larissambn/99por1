@@ -1,4 +1,3 @@
-// middleware/auth.js
 import jwt from 'jsonwebtoken';
 import User from '../models/usuários/usuario.js';
 
@@ -13,8 +12,8 @@ export const authenticateElderly = async (req, res, next) => {
     // Verify the token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Check if the user is elderly (assuming there's a role or field that distinguishes elderly users)
-    const user = await User.findByPk(decoded.id);
+    // Check if the user is elderly
+    const user = await User.findById(decoded.id);
     if (!user || user.role !== 'Elderly') {
       return res.status(403).json({ message: 'Forbidden: You do not have permission to perform this action' });
     }

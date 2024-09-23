@@ -1,4 +1,3 @@
-// middleware/authorizeTutor.js
 import Elderly from '../models/usuários/idoso.js';
 import ServiceRequest from '../models/pedidos/pedidoServiço.js';
 
@@ -9,17 +8,16 @@ export const authorizeTutorReviewService = async (req, res, next) => {
   try {
     // Fetch the service request
     const serviceRequest = await ServiceRequest.findOne({
-      where: { service_id: serviceId },
-      include: [{ model: Elderly }]
-    });
+      service_id: serviceId,
+    }).populate('elderly'); // Populating elderly document
 
     if (!serviceRequest) {
       return res.status(404).json({ message: 'Service request not found' });
     }
 
     // Check if the tutor is associated with the elderly in the service request
-    const elderly = await Elderly.findByPk(serviceRequest.elderly_id);
-    if (elderly.tutor_id !== tutorId) {
+    const elderly = await Elderly.findById(serviceRequest.elderly._id); 
+    if (elderly.tutor_id.toString() !== tutorId) {
       return res.status(403).json({ message: 'Forbidden: You are not authorized to review this service' });
     }
 

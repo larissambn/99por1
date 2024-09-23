@@ -1,20 +1,14 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js';
+import { Schema, model } from 'mongoose';
 
-// Define the ServiceCategory model
-const ServiceCategory = sequelize.define('ServiceCategory', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
+// Define the ServiceCategory schema
+const serviceCategorySchema = new Schema({
   category_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: String,
+    required: true, // Equivalent to allowNull: false
   },
-}, {
-  timestamps: false,
-  tableName: 'service_categories',
 });
+
+// Create the ServiceCategory model
+const ServiceCategory = model('ServiceCategory', serviceCategorySchema);
 
 export default ServiceCategory;

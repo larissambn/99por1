@@ -1,6 +1,5 @@
 import ServiceRequest from '../models/pedidos/pedidoServiço.js';
 import ServiceReview from '../models/avaliação/avaliacaoServiço.js';
-import Elderly from '../models/usuários/idoso.js';
 
 // Controller for elderly to review the user
 export const submitServiceReview = async (req, res) => {
@@ -10,12 +9,9 @@ export const submitServiceReview = async (req, res) => {
   try {
     // Find the service request
     const serviceRequest = await ServiceRequest.findOne({
-      where: {
-        service_id: serviceId,
-        status: 'Finished', // Ensure the service was completed
-      },
-      include: [{ model: Elderly }]
-    });
+      service_id: serviceId,
+      status: 'Finished', 
+    }).populate('elderly'); 
 
     if (!serviceRequest) {
       return res.status(404).json({ message: 'Service not found or not finished' });
@@ -29,11 +25,11 @@ export const submitServiceReview = async (req, res) => {
     // Create the review
     const newReview = await ServiceReview.create({
       service_id: serviceId,
-      rating_user,       // Rating given by the elderly for the user
-      comment_user,      // Optional comment from elderly
-      user_id: serviceRequest.user_id, // The user who requested the service
-      rating_elderly: 0, // Initialize with 0, user will rate elderly later
-      comment_elderly: null // Initialize with null
+      rating_user,       
+      comment_user,     
+      user_id: serviceRequest.user_id, 
+      rating_elderly: 0, 
+      comment_elderly: null 
     });
 
     return res.status(201).json({ message: 'Review submitted successfully', newReview });

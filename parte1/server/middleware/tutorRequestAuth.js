@@ -9,8 +9,9 @@ export const authorizeTutorServiceRequest = async (req, res, next) => {
 
   // Fetch the elderly user linked to the service request
   const { service_requestId } = req.params;
-  const serviceRequest = await ServiceRequest.findByPk(service_requestId, {
-    include: [{ model: Service, as: 'service', include: ['elderly'] }],
+  const serviceRequest = await ServiceRequest.findById(service_requestId).populate({
+    path: 'service',
+    populate: { path: 'elderly' }
   });
 
   if (!serviceRequest) {
@@ -20,7 +21,7 @@ export const authorizeTutorServiceRequest = async (req, res, next) => {
   // Check if the tutor is responsible for the elderly linked to the service request
   const elderly = serviceRequest.service.elderly;
 
-  if (elderly.tutor_id !== tutorId) {
+  if (elderly.tutor_id.toString() !== tutorId.toString()) {
     return res.status(403).json({ message: 'Access denied. You are not authorized to manage this request.' });
   }
 
@@ -32,8 +33,9 @@ export const authorizeTutorDonationRequest = async (req, res, next) => {
 
   // Fetch the elderly user linked to the donation request
   const { donation_requestId } = req.params;
-  const donationRequest = await DonationRequest.findByPk(donation_requestId, {
-    include: [{ model: Donation, as: 'donation', include: ['elderly'] }],
+  const donationRequest = await DonationRequest.findById(donation_requestId).populate({
+    path: 'donation',
+    populate: { path: 'elderly' }
   });
 
   if (!donationRequest) {
@@ -41,33 +43,33 @@ export const authorizeTutorDonationRequest = async (req, res, next) => {
   }
 
   // Check if the tutor is responsible for the elderly linked to the donation request
-  const elderly = donationRequest.service.elderly;
+  const elderly = donationRequest.donation.elderly;
 
-  if (elderly.tutor_id !== tutorId) {
+  if (elderly.tutor_id.toString() !== tutorId.toString()) {
     return res.status(403).json({ message: 'Access denied. You are not authorized to manage this request.' });
   }
 
   next();
 };
 
-
 export const authorizeTutorActivityRequest = async (req, res, next) => {
   const tutorId = req.user.id;
 
   // Fetch the elderly user linked to the activity request
   const { activity_requestId } = req.params;
-  const activityRequest = await ActivityRequest.findByPk(activity_requestId, {
-    include: [{ model: Donation, as: 'donation', include: ['elderly'] }],
+  const activityRequest = await ActivityRequest.findById(activity_requestId).populate({
+    path: 'activity',
+    populate: { path: 'elderly' }
   });
 
   if (!activityRequest) {
-    return res.status(404).json({ message: 'Donation request not found' });
+    return res.status(404).json({ message: 'Activity request not found' });
   }
 
   // Check if the tutor is responsible for the elderly linked to the activity request
-  const elderly = activityRequest.service.elderly;
+  const elderly = activityRequest.activity.elderly;
 
-  if (elderly.tutor_id !== tutorId) {
+  if (elderly.tutor_id.toString() !== tutorId.toString()) {
     return res.status(403).json({ message: 'Access denied. You are not authorized to manage this request.' });
   }
 

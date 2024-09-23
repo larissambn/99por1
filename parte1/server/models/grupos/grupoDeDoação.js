@@ -1,20 +1,14 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js';
+import { Schema, model } from 'mongoose';
 
-// Define the DonationCategory model
-const DonationCategory = sequelize.define('DonationCategory', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
+// Define the donationCategory schema
+const donationCategorySchema = new Schema({
   category_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: String,
+    required: true, // Equivalent to allowNull: false
   },
-}, {
-  timestamps: false,
-  tableName: 'donation_categories',
 });
+
+// Create the donationCategory model
+const DonationCategory = model('DonationCategory', donationCategorySchema);
 
 export default DonationCategory;

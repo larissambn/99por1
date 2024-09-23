@@ -1,23 +1,19 @@
 import ServiceReview from '../models/avaliação/avaliacaoServiço.js';
 import ServiceRequest from '../models/pedidos/pedidoServiço.js';
-import Service from '../models/funcionalidades/servico.js';
 
 // Controller to submit a review for the elderly service
-export const submitServiceReview = async (req, res) => {
-  const { serviceId } = req.params; // Service ID being reviewed
-  const { rating_elderly, comment_elderly, rating_user, comment_user } = req.body; // Review details
-  const userId = req.user.id; // Logged-in user's ID (from authentication middleware)
+export const userSubmitServiceReview = async (req, res) => {
+  const { serviceId } = req.params; 
+  const { rating_elderly, comment_elderly, rating_user, comment_user } = req.body; 
+  const userId = req.user.id; 
 
   try {
     // Check if the service exists and has been completed
     const serviceRequest = await ServiceRequest.findOne({
-      where: {
-        service_id: serviceId,
-        user_id: userId,
-        status: 'Finished', // Service must be finished to allow reviews
-      },
-      include: [{ model: Service }]
-    });
+      service_id: serviceId,
+      user_id: userId,
+      status: 'Finished', 
+    }).populate('service');
 
     if (!serviceRequest) {
       return res.status(404).json({ message: 'Service not found or not completed yet.' });
@@ -25,10 +21,8 @@ export const submitServiceReview = async (req, res) => {
 
     // Check if the user has already submitted a review for this service
     const existingReview = await ServiceReview.findOne({
-      where: {
-        service_id: serviceId,
-        user_id: userId,
-      }
+      service_id: serviceId,
+      user_id: userId,
     });
 
     if (existingReview) {

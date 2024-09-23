@@ -1,56 +1,43 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/db.config.js';
-import User from '../usuários/usuario.js';
-import Activity from '../funcionalidades/atividades.js';
+import { model, Schema } from "mongoose";
 
-// Define the ActivityRequest model
-const ActivityRequest = sequelize.define('ActivityRequest', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
+// Define the ActivityRequest Schema
+const activityRequestSchema = new Schema({
   activity_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Activity,
-      key: 'id',
-    },
-    allowNull: false,
+    type: Schema.Types.ObjectId, 
+    ref: 'Activity',
+    required: true,
   },
   user_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: User,
-      key: 'id',
-    },
-    allowNull: false,
+    type: Schema.Types.ObjectId, 
+    ref: 'User',
+    required: true,
   },
   status: {
-    type: DataTypes.ENUM('Requested', 'Approved', 'Denied', 'Finished'),
-    defaultValue: 'Requested',
-    allowNull: false,
-  },
-  request_date: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: DataTypes.NOW,
+    type: String,
+    enum: ['Requested', 'Approved', 'Denied', 'Finished'], 
+    default: 'Requested',
+    required: true,
   },
   scheduled_date: {
-    type: DataTypes.DATE,
-    allowNull: false,
+    type: Date,
+    required: true,
   },
   completion_date: {
-    type: DataTypes.DATE,
-    allowNull: true,
+    type: Date,
+    required: false, 
   },
   description: {
-    type: DataTypes.TEXT,
-    allowNull: false,
+    type: String, 
+    required: true,
   },
-}, {
-  timestamps: false,
-  tableName: 'Activity_requests',
+  request_date: {
+    type: Date,
+    default: Date.now(),
+    required: true,
+  },
 });
+
+// Create the ActivityRequest model
+const ActivityRequest = model('ActivityRequest', activityRequestSchema);
 
 export default ActivityRequest;

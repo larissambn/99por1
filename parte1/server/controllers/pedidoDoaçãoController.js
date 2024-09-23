@@ -7,7 +7,7 @@ export const manageDonationRequest = async (req, res) => {
 
   try {
     // Fetch the donation request
-    const donationRequest = await DonationRequest.findByPk(requestId);
+    const donationRequest = await DonationRequest.findById(requestId);
 
     if (!donationRequest) {
       return res.status(404).json({ message: 'Donation request not found' });
@@ -30,6 +30,3 @@ export const manageDonationRequest = async (req, res) => {
     return res.status(500).json({ message: 'Error managing donation request', error });
   }
 };
-
-
-
